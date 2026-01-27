@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="galeria"></div>
+
+<script>
+const USUARIO = "jocaxx";
+const REPO = "IC";
+const PASTA = "Fotos_Doador";
+
+const API_URL = `https://api.github.com/repos/${USUARIO}/${REPO}/contents/${PASTA}`;
+
+const EXTENSOES = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".pdf"];
+
+fetch(API_URL)
+  .then(r => r.json())
+  .then(files => {
+    files.forEach(f => {
+
+      const nome = f.name.toLowerCase();  // ? normalização aqui
+
+      if (EXTENSOES.some(ext => nome.endsWith(ext))) {
+
+        let el;
+
+        if (nome.endsWith(".pdf")) {
+          el = document.createElement("a");
+          el.href = f.download_url;
+          el.textContent = f.name;
+          el.target = "_blank";
+        } else {
+          el = document.createElement("img");
+          el.src = f.download_url;
+          el.style.width = "200px";
+          el.style.margin = "6px";
+        }
+
+        document.getElementById("galeria").appendChild(el);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
