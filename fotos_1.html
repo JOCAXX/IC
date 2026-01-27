@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="galeria"></div>
+
+<script>
+fetch("https://api.github.com/repos/jocaxx/IC/contents/Fotos_Doador")
+  .then(r => r.json())
+  .then(files => {
+    files.forEach(f => {
+      if (f.name.endsWith(".jpg")) {
+        const img = document.createElement("img");
+        img.src = f.download_url;
+        img.style.width = "200px";
+        img.style.margin = "5px";
+        document.getElementById("galeria").appendChild(img);
+      }
+    });
+  });
+</script>
+</body>
+</html>
