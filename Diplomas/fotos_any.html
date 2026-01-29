@@ -7,7 +7,7 @@
 <script>
 const USUARIO = "jocaxx";
 const REPO = "IC";
-const PASTA = "Fotos_Doador";
+const PASTA = "Diplomas";
 
 const API_URL = `https://api.github.com/repos/${USUARIO}/${REPO}/contents/${PASTA}`;
 
@@ -18,7 +18,7 @@ fetch(API_URL)
   .then(files => {
     files.forEach(f => {
 
-      const nome = f.name.toLowerCase();  // ? normalização aqui
+      const nome = f.name.toLowerCase();  // ? normalizaï¿½ï¿½o aqui
 
       if (EXTENSOES.some(ext => nome.endsWith(ext))) {
 
